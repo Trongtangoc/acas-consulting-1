@@ -379,190 +379,144 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <script>
-        // Mobile menu toggle
-        const mobileToggle = document.querySelector('.mobile-toggle');
-        const mainNav = document.querySelector('.main-nav');
-
-        mobileToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    mainNav.classList.remove('active');
-                }
-            });
-        });
-
-        // Active nav on scroll
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('.main-nav a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Back to top button
-            const backToTop = document.querySelector('.back-to-top');
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        });
-
-        // Back to top click
-        document.querySelector('.back-to-top').addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Form submission with Google Sheets integration
-        const form = document.getElementById('consultationForm');
-        const formMessage = document.getElementById('formMessage');
-
-        // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbycA6qaRSMj3QlBjELQejOuy2p0ehXC9blWuYlPE6JSAHpuBoDuYXEDXIrE_GdB7zaO/exec';
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const submitBtn = form.querySelector('.btn-submit');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'SENDING...';
-            
-            const formData = new FormData(form);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                practice_area: formData.get('practice_area'),
-                message: formData.get('message'),
-                timestamp: new Date().toLocaleString()
-            };
-
-            try {
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                formMessage.className = 'form-message success';
-                formMessage.textContent = 'Thank you! Your consultation request has been received. We will contact you shortly.';
-                form.reset();
-
-            } catch (error) {
-                formMessage.className = 'form-message error';
-                formMessage.textContent = 'Sorry, there was an error submitting your request. Please try again or call us directly.';
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'SUBMIT REQUEST';
-                
-                setTimeout(() => {
-                    formMessage.textContent = '';
-                    formMessage.className = '';
-                }, 5000);
-            }
-        });
-// Thay YOUR_SCRIPT_URL bằng URL vừa copy ở bước 2.2
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbycA6qaRSMj3QlBjELQejOuy2p0ehXC9blWuYlPE6JSAHpuBoDuYXEDXIrE_GdB7zaO/exec';
-
-const form = document.getElementById('consultationForm');
-const formMessage = document.getElementById('formMessage');
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  
-  const submitBtn = form.querySelector('.btn-submit');
-  const originalText = submitBtn.textContent;
-  
-  // Disable button và hiển thị loading
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'SENDING...';
-  
-  // Lấy dữ liệu từ form
-  const formData = new FormData(form);
-  const data = {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    phone: formData.get('phone') || 'N/A',
-    practice_area: formData.get('practice_area') || 'Not specified',
-    message: formData.get('message'),
-    timestamp: new Date().toLocaleString('en-US', { 
-      timeZone: 'Asia/Ho_Chi_Minh',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
-    })
-  };
-
-  try {
-    // Gửi dữ liệu đến Google Sheets
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors', // Quan trọng!
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
+ <script>
+    // ==========================================
+    // MOBILE MENU
+    // ==========================================
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    
+    mobileToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
     });
 
-    // Hiển thị thông báo thành công
-    formMessage.className = 'form-message success';
-    formMessage.textContent = '✅ Thank you! Your consultation request has been received. We will contact you shortly.';
-    
-    // Reset form
-    form.reset();
+    // ==========================================
+    // SMOOTH SCROLLING
+    // ==========================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                mainNav.classList.remove('active');
+            }
+        });
+    });
 
-    // Tự động ẩn thông báo sau 5 giây
-    setTimeout(() => {
-      formMessage.textContent = '';
-      formMessage.className = '';
-    }, 5000);
+    // ==========================================
+    // ACTIVE NAV ON SCROLL
+    // ==========================================
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const sections = document.querySelectorAll('section');
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
 
-  } catch (error) {
-    // Hiển thị thông báo lỗi
-    formMessage.className = 'form-message error';
-    formMessage.textContent = '❌ Sorry, there was an error submitting your request. Please try again or call us directly at 715.387.5006';
+        document.querySelectorAll('.main-nav a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+
+        // Back to top button
+        const backToTop = document.querySelector('.back-to-top');
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('show');
+        } else {
+            backToTop.classList.remove('show');
+        }
+    });
+
+    // ==========================================
+    // BACK TO TOP
+    // ==========================================
+    document.querySelector('.back-to-top').addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // ==========================================
+    // FORM SUBMISSION - GOOGLE SHEETS
+    // ==========================================
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbycA6qaRSMj3QlBjELQejOuy2p0ehXC9blWuYlPE6JSAHpuBoDuYXEDXIrE_GdB7zaO/exec';
     
-    console.error('Error:', error);
-  } finally {
-    // Re-enable button
-    submitBtn.disabled = false;
-    submitBtn.textContent = originalText;
-  }
-});
-    </script>
+    const form = document.getElementById('consultationForm');
+    const formMessage = document.getElementById('formMessage');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = form.querySelector('.btn-submit');
+        const originalText = submitBtn.textContent;
+        
+        // Disable button
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'SENDING...';
+        
+        // Collect form data
+        const formData = new FormData(form);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            phone: formData.get('phone') || 'N/A',
+            practice_area: formData.get('practice_area') || 'Not specified',
+            message: formData.get('message'),
+            timestamp: new Date().toLocaleString('en-US', { 
+                timeZone: 'Asia/Ho_Chi_Minh',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            })
+        };
+
+        try {
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            // Success
+            formMessage.className = 'form-message success';
+            formMessage.textContent = '✅ Thank you! Your consultation request has been received. We will contact you shortly.';
+            form.reset();
+
+            setTimeout(() => {
+                formMessage.textContent = '';
+                formMessage.className = '';
+            }, 5000);
+
+        } catch (error) {
+            // Error
+            formMessage.className = 'form-message error';
+            formMessage.textContent = '❌ Sorry, there was an error. Please try again or call us at 0935.996.043';
+            console.error('Error:', error);
+        } finally {
+            // Re-enable button
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    });
+</script>
 
 		</main>
 		
