@@ -293,7 +293,43 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
                 <h2>REQUEST A FREE CONSULTATION</h2>
                 <p>Fill out the form below to receive a free and confidential initial consultation.</p>
             </div>
-
+<form id="consultationForm">
+  <div class="form-row">
+    <div class="form-group">
+      <input type="text" name="name" placeholder="Your Name *" required>
+    </div>
+    <div class="form-group">
+      <input type="email" name="email" placeholder="Your Email *" required>
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group">
+      <input type="tel" name="phone" placeholder="Your Phone">
+    </div>
+    <div class="form-group">
+      <select name="practice_area">
+        <option value="">Select Practice Area</option>
+        <option value="Personal Injury">Personal Injury</option>
+        <option value="Family Law">Family Law</option>
+        <option value="Business Law">Business Law</option>
+        <option value="Criminal Defense">Criminal Defense</option>
+        <option value="Real Estate">Real Estate Law</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <textarea name="message" placeholder="Brief Description of Your Case *" required></textarea>
+  </div>
+  
+  <div class="form-group">
+    <button type="submit" class="btn-submit">SUBMIT REQUEST</button>
+  </div>
+  
+  <div id="formMessage"></div>
+</form>
             <form class="form-container" id="consultationForm">
                 <div class="form-row">
                     <div class="form-group">
@@ -491,6 +527,77 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
                 }, 5000);
             }
         });
+// Thay YOUR_SCRIPT_URL bằng URL vừa copy ở bước 2.2
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+
+const form = document.getElementById('consultationForm');
+const formMessage = document.getElementById('formMessage');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const submitBtn = form.querySelector('.btn-submit');
+  const originalText = submitBtn.textContent;
+  
+  // Disable button và hiển thị loading
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'SENDING...';
+  
+  // Lấy dữ liệu từ form
+  const formData = new FormData(form);
+  const data = {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    phone: formData.get('phone') || 'N/A',
+    practice_area: formData.get('practice_area') || 'Not specified',
+    message: formData.get('message'),
+    timestamp: new Date().toLocaleString('en-US', { 
+      timeZone: 'Asia/Ho_Chi_Minh',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    })
+  };
+
+  try {
+    // Gửi dữ liệu đến Google Sheets
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Quan trọng!
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    });
+
+    // Hiển thị thông báo thành công
+    formMessage.className = 'form-message success';
+    formMessage.textContent = '✅ Thank you! Your consultation request has been received. We will contact you shortly.';
+    
+    // Reset form
+    form.reset();
+
+    // Tự động ẩn thông báo sau 5 giây
+    setTimeout(() => {
+      formMessage.textContent = '';
+      formMessage.className = '';
+    }, 5000);
+
+  } catch (error) {
+    // Hiển thị thông báo lỗi
+    formMessage.className = 'form-message error';
+    formMessage.textContent = '❌ Sorry, there was an error submitting your request. Please try again or call us directly at 715.387.5006';
+    
+    console.error('Error:', error);
+  } finally {
+    // Re-enable button
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
+  }
+});
     </script>
 
 		</main>
