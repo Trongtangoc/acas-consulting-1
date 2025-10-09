@@ -9,41 +9,1395 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lawyer Attorney - Legal Office</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #c9a961;
+            --dark-bg: #2a2a2a;
+            --light-gray: #f8f8f8;
+            --text-gray: #666;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: #333;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 12px 0;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .top-bar .container {
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-left {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .top-bar-left span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+        }
+
+        .top-bar-left i {
+            color: var(--primary-gold);
+        }
+
+        .top-bar-right {
+            display: flex;
+            gap: 15px;
+        }
+
+        .top-bar-right a {
+            color: #999;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .top-bar-right a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Main Header */
+        .main-header {
+            background: #fff;
+            padding: 25px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: #fff;
+        }
+
+        .logo-text h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #1a1a1a;
+            margin-bottom: 3px;
+        }
+
+        .logo-text p {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--text-gray);
+            text-transform: uppercase;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 10px 18px;
+            color: #333;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--primary-gold);
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 18px;
+            right: 18px;
+            height: 2px;
+            background: var(--primary-gold);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            transform: scaleX(1);
+        }
+
+        .header-search {
+            padding: 10px 15px;
+            cursor: pointer;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        .header-search:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            position: relative;
+            height: 650px;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeSlide 15s infinite;
+        }
+
+        @keyframes fadeSlide {
+            0%, 33% { opacity: 1; }
+            36%, 100% { opacity: 0; }
+        }
+
+        .slide-content {
+            text-align: center;
+            color: #fff;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .slide-subtitle {
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .slide-title {
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .slide-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 40px;
+            font-family: 'Crimson Text', serif;
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 18px 45px;
+            background: transparent;
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid #fff;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-gold);
+            border-color: var(--primary-gold);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .section-header .quote {
+            font-size: 24px;
+            font-style: italic;
+            color: var(--primary-gold);
+            margin-bottom: 25px;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 15px;
+        }
+
+        .history-section {
+            margin-top: 80px;
+        }
+
+        .history-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .history-header h3 {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .history-timeline {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            padding-left: 60px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 18px;
+            top: 10px;
+            bottom: -50px;
+            width: 1px;
+            background: #ddd;
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 38px;
+            height: 38px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .timeline-item h4 {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+            background: var(--light-gray);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .service-box {
+            background: #fff;
+            padding: 50px 30px;
+            text-align: center;
+            transition: all 0.3s;
+            border-top: 3px solid transparent;
+        }
+
+        .service-box:hover {
+            border-top-color: var(--primary-gold);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 54px;
+            color: var(--primary-gold);
+            margin-bottom: 25px;
+        }
+
+        .service-box h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .service-box p {
+            color: var(--text-gray);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* Latest News & Testimonials */
+        .news-testimonials {
+            padding: 100px 0;
+            background: #fff;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .news-item {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-meta {
+            font-size: 11px;
+            color: var(--text-gray);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .news-meta span {
+            color: var(--primary-gold);
+        }
+
+        .news-item h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .news-item h3 a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .news-item h3 a:hover {
+            color: var(--primary-gold);
+        }
+
+        .news-item p {
+            color: var(--text-gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .testimonial-box {
+            background: var(--light-gray);
+            padding: 40px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .testimonial-icon {
+            font-size: 40px;
+            color: var(--primary-gold);
+            opacity: 0.3;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            font-style: italic;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 100px 0;
+            background: var(--dark-bg);
+            color: #fff;
+        }
+
+        .team-section .section-header h2,
+        .team-section .section-header p {
+            color: #fff;
+        }
+
+        .team-section .section-header .quote {
+            color: var(--primary-gold);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-photo {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .team-member:hover .team-photo img {
+            transform: scale(1.05);
+        }
+
+        .team-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 30px 20px 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .team-member:hover .team-overlay {
+            opacity: 1;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .team-social a {
+            width: 35px;
+            height: 35px;
+            background: var(--primary-gold);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .team-social a:hover {
+            background: #fff;
+            color: var(--primary-gold);
+        }
+
+        .team-member h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .team-member .position {
+            font-size: 13px;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary-gold);
+            padding: 70px 0;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 32px;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .cta-content p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 35px;
+        }
+
+        .btn-white {
+            display: inline-block;
+            padding: 18px 45px;
+            background: #fff;
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+
+        .btn-white:hover {
+            background: var(--dark-bg);
+            color: #fff;
+        }
+
+        /* Consultation Form */
+        .consultation-section {
+            padding: 100px 0;
+            background: #fff;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 60px auto 0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            background: #fff;
+            font-family: 'Raleway', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background: var(--primary-gold);
+            color: #fff;
+            padding: 18px 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .btn-submit:hover {
+            background: var(--dark-bg);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .form-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: #999;
+            padding: 80px 0 30px;
+        }
+
+        .footer-widgets {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-widget h3 {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .footer-widget p,
+        .footer-widget li {
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .footer-widget ul {
+            list-style: none;
+        }
+
+        .footer-widget a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-widget a:hover {
+            color: var(--primary-gold);
+        }
+
+        .footer-widget i {
+            color: var(--primary-gold);
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid #333;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--primary-gold);
+            color: #fff;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .back-to-top:hover {
+            background: var(--dark-bg);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        /* Mobile Menu */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 28px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .slide-title {
+                font-size: 52px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-widgets {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar-left {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #fff;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            .main-nav.active {
+                display: block;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .main-nav a {
+                padding: 15px 20px;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .main-nav a::after {
+                display: none;
+            }
+
+            .slide-title {
+                font-size: 36px;
+            }
+
+            .slide-text {
+                font-size: 16px;
+            }
+
+            .services-grid,
+            .team-grid,
+            .footer-widgets {
+                grid-template-columns: 1fr;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 	</head>
 	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+	<Header />
+	<main>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span><i class="fas fa-phone"></i> Call us: 715.387.5006</span>
+                <span><i class="fas fa-clock"></i> Opening Hours: Mon - Fri: 9:00 - 18:00</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>LAWYER ATTORNEY</h1>
+                    <p>Personal Injury Attorney</p>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#attorneys">Attorneys</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#practice">Practice Areas</a></li>
+                    <li><a href="#qa">Q&A</a></li>
+                    <li><a href="#contact">Contacts</a></li>
+                </ul>
+            </nav>
+            <div class="header-search">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Slider -->
+    <section class="hero-slider" id="home">
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-subtitle">Experience. Dedication. Results.</div>
+                <h1 class="slide-title">JUSTICE FOR ALL</h1>
+                <p class="slide-text">"Every mountain top is within reach if you just keep climbing."</p>
+                <a href="#contact" class="btn-primary">Request Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>WHO WE ARE</h2>
+                <p class="quote">"Every mountain top is within reach if you just keep climbing."</p>
+                <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper adipiscing elit, sed diam nonummy nibh suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+            </div>
+
+            <div class="history-section">
+                <div class="history-header">
+                    <h3>OUR HISTORY</h3>
+                </div>
+                <div class="history-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h4>– 1987, Opening</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper adipiscing elit, sed diam nonummy nibh suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>– 1996, 30 Fresh New People</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h4>– 2014, We're in Tokyo!</h4>
+                        <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet…</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>HOW WE CAN HELP YOU</h2>
+                <p>Our experienced attorneys are dedicated to protecting your rights and achieving the best possible outcome for your case.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-box">
+                    <div class="service-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>How we can help you?</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip.</p>
+                </div>
+                <div class="service-box">
+                    <div class="service-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>How we can help you?</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip.</p>
+                </div>
+                <div class="service-box">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>How we can help you?</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip.</p>
+                </div>
+                <div class="service-box">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>How we can help you?</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest News & Testimonials -->
+    <section class="news-testimonials" id="news">
+        <div class="container">
+            <div class="section-header">
+                <h2>LATEST NEWS & TESTIMONIALS</h2>
+            </div>
+
+            <div class="content-grid">
+                <div class="news-column">
+                    <div class="news-item">
+                        <div class="news-meta">
+                            <span>March 15, 2024</span> / BY ADMIN / IN LEGAL NEWS
+                        </div>
+                        <h3><a href="#">Understanding Your Rights in Personal Injury Cases</a></h3>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-meta">
+                            <span>March 10, 2024</span> / BY ADMIN / IN CASE RESULTS
+                        </div>
+                        <h3><a href="#">$2.5 Million Settlement in Car Accident Case</a></h3>
+                        <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-meta">
+                            <span>March 5, 2024</span> / BY ADMIN / IN LEGAL TIPS
+                        </div>
+                        <h3><a href="#">What to Do After a Workplace Injury</a></h3>
+                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="testimonials-column">
+                    <div class="testimonial-box">
+                        <div class="testimonial-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"The team at Lawyer Attorney provided exceptional service during my case. Their professionalism and dedication were evident throughout the entire process. I couldn't have asked for better representation."</p>
+                        <p class="testimonial-author">— Robert Johnson</p>
+                    </div>
+                    <div class="testimonial-box">
+                        <div class="testimonial-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"After my accident, I was overwhelmed and didn't know where to turn. This firm handled everything with care and expertise. They fought for my rights and secured a fair settlement."</p>
+                        <p class="testimonial-author">— Sarah Williams</p>
+                    </div>
+                    <div class="testimonial-box">
+                        <div class="testimonial-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">"I highly recommend this law firm to anyone seeking legal representation. They are knowledgeable, responsive, and truly care about their clients' well-being."</p>
+                        <p class="testimonial-author">— Michael Chen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="attorneys">
+        <div class="container">
+            <div class="section-header">
+                <h2>MEET OUR ATTORNEYS</h2>
+                <p class="quote">"Excellence in legal representation"</p>
+                <p>Our team of experienced attorneys is dedicated to providing the highest level of legal service and achieving the best possible outcomes for our clients.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" alt="Attorney 1">
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>John Mitchell</h3>
+                    <p class="position">Senior Partner</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Attorney 2">
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Sarah Williams</h3>
+                    <p class="position">Partner</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=600&q=80" alt="Attorney 3">
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Michael Chen</h3>
+                    <p class="position">Associate Attorney</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Want to be an intern with us and you are a student?</h2>
+                <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Claritas est etiam processus dynamicus, qui sequitur mutationem…</p>
+                <a href="#contact" class="btn-white">Apply Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Form -->
+    <section class="consultation-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>REQUEST A FREE CONSULTATION</h2>
+                <p>Fill out the form below to receive a free and confidential initial consultation.</p>
+            </div>
+
+            <form class="form-container" id="consultationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email *" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Your Phone">
+                    </div>
+                    <div class="form-group">
+                        <select name="practice_area">
+                            <option value="">Select Practice Area</option>
+                            <option value="personal_injury">Personal Injury</option>
+                            <option value="family_law">Family Law</option>
+                            <option value="business_law">Business Law</option>
+                            <option value="criminal_defense">Criminal Defense</option>
+                            <option value="real_estate">Real Estate Law</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Brief Description of Your Case *" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn-submit">Submit Request</button>
+                </div>
+                <div id="formMessage"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-widgets">
+                <div class="footer-widget">
+                    <h3>About Us</h3>
+                    <p>We are a full-service law firm dedicated to providing exceptional legal representation and personalized service to our clients. Our experienced team is committed to achieving the best possible outcomes.</p>
+                </div>
+                <div class="footer-widget">
+                    <h3>Practice Areas</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Personal Injury</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Family Law</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Business Law</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Criminal Defense</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Real Estate Law</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about"><i class="fas fa-angle-right"></i> About Us</a></li>
+                        <li><a href="#attorneys"><i class="fas fa-angle-right"></i> Our Attorneys</a></li>
+                        <li><a href="#news"><i class="fas fa-angle-right"></i> Latest News</a></li>
+                        <li><a href="#contact"><i class="fas fa-angle-right"></i> Contact Us</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Law Street, Suite 100<br>City, State 12345</li>
+                        <li><i class="fas fa-phone"></i> 715.387.5006</li>
+                        <li><i class="fas fa-envelope"></i> office@lawyer.com</li>
+                        <li><i class="fas fa-clock"></i> Mon - Fri: 9:00 - 18:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lawyer Attorney. All rights reserved. | Designed for Cloudflare Pages</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const mainNav = document.querySelector('.main-nav');
+
+        mobileToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    mainNav.classList.remove('active');
+                }
+            });
+        });
+
+        // Active nav on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.main-nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Back to top button
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // Back to top click
+        document.querySelector('.back-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form submission with Google Sheets integration
+        const form = document.getElementById('consultationForm');
+        const formMessage = document.getElementById('formMessage');
+
+        // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = form.querySelector('.btn-submit');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'SENDING...';
+            
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                practice_area: formData.get('practice_area'),
+                message: formData.get('message'),
+                timestamp: new Date().toLocaleString()
+            };
+
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                formMessage.className = 'form-message success';
+                formMessage.textContent = 'Thank you! Your consultation request has been received. We will contact you shortly.';
+                form.reset();
+
+            } catch (error) {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Sorry, there was an error submitting your request. Please try again or call us directly.';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'SUBMIT REQUEST';
+                
+                setTimeout(() => {
+                    formMessage.textContent = '';
+                    formMessage.className = '';
+                }, 5000);
+            }
+        });
+    </script>
+
 		</main>
 		<Footer />
 	</body>
