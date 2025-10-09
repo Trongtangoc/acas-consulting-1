@@ -293,43 +293,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
                 <h2>REQUEST A FREE CONSULTATION</h2>
                 <p>Fill out the form below to receive a free and confidential initial consultation.</p>
             </div>
-<form id="consultationForm">
-  <div class="form-row">
-    <div class="form-group">
-      <input type="text" name="name" placeholder="Your Name *" required>
-    </div>
-    <div class="form-group">
-      <input type="email" name="email" placeholder="Your Email *" required>
-    </div>
-  </div>
-  
-  <div class="form-row">
-    <div class="form-group">
-      <input type="tel" name="phone" placeholder="Your Phone">
-    </div>
-    <div class="form-group">
-      <select name="practice_area">
-        <option value="">Select Practice Area</option>
-        <option value="Personal Injury">Personal Injury</option>
-        <option value="Family Law">Family Law</option>
-        <option value="Business Law">Business Law</option>
-        <option value="Criminal Defense">Criminal Defense</option>
-        <option value="Real Estate">Real Estate Law</option>
-        <option value="Other">Other</option>
-      </select>
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <textarea name="message" placeholder="Brief Description of Your Case *" required></textarea>
-  </div>
-  
-  <div class="form-group">
-    <button type="submit" class="btn-submit">SUBMIT REQUEST</button>
-  </div>
-  
-  <div id="formMessage"></div>
-</form>
+
             <form class="form-container" id="consultationForm">
                 <div class="form-row">
                     <div class="form-group">
@@ -481,7 +445,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
         const formMessage = document.getElementById('formMessage');
 
         // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbycA6qaRSMj3QlBjELQejOuy2p0ehXC9blWuYlPE6JSAHpuBoDuYXEDXIrE_GdB7zaO/exec';
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -528,7 +492,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
             }
         });
 // Thay YOUR_SCRIPT_URL bằng URL vừa copy ở bước 2.2
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbycA6qaRSMj3QlBjELQejOuy2p0ehXC9blWuYlPE6JSAHpuBoDuYXEDXIrE_GdB7zaO/exec';
 
 const form = document.getElementById('consultationForm');
 const formMessage = document.getElementById('formMessage');
