@@ -1384,7 +1384,6 @@ main {
   justify-content: center;
   color: #fff;
   font-size: 22px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 }
 
