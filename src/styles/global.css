@@ -1395,7 +1395,10 @@ main {
   width: 45px;
   height: 45px;
 }
-
+.zalo img{
+  width: 50px !important;
+  height: 50px !important;;
+}
 .messenger { background: #0084ff; }
 .whatsapp { background: #25d366; }
 .call { background: #2a2a2a; }
