@@ -1241,7 +1241,7 @@ main {
    ======================================== */
 .zalo-chat-btn {
   position: fixed;
-  bottom: 79px;
+  bottom: 74px;
   right: 30px;
   transition: all 0.3s ease;
   z-index: 9999;
@@ -1273,8 +1273,8 @@ main {
 /* Messenger Floating Button */
 .messenger-btn {
   position: fixed;
-  bottom: 140px; /* nằm trên nút Zalo */
-  right: 32px;
+  bottom: 135px; /* nằm trên nút Zalo */
+  right: 29px;
   width: 46px;
   height: 46px;
   border-radius: 50%;
