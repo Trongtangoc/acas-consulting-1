@@ -252,6 +252,98 @@ main {
 .top-bar-right a:hover {
   color: var(--primary-gold);
 }
+/* ===============================
+   Top Bar (Refined)
+   =============================== */
+.top-bar {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 10px 0;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.top-bar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Left side: contact info */
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.top-bar-left span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #eaeaea;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* highlight phone number */
+.top-bar-left span:first-child {
+  color: #fff;
+}
+
+.top-bar-left i {
+  color: var(--primary-gold);
+  font-size: 14px;
+}
+
+/* make phone number more elegant */
+.top-bar-left span:first-child {
+  font-size: 13px;
+}
+
+.top-bar-left span:first-child strong,
+.top-bar-left span:first-child a {
+  color: var(--primary-gold);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.top-bar-left span:first-child a:hover {
+  color: #fff;
+}
+
+/* Right side: social icons */
+.top-bar-right {
+  display: flex;
+  gap: 15px;
+}
+
+.top-bar-right a {
+  color: #999;
+  font-size: 14px;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.top-bar-right a:hover {
+  color: var(--primary-gold);
+  transform: scale(1.1);
+}
+
+/* Responsive: stack items on mobile */
+@media (max-width: 768px) {
+  .top-bar .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .top-bar-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+
 
 /* ========================================
    Main Header
