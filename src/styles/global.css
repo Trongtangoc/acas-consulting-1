@@ -6,6 +6,8 @@
 /* ========================================
    CSS Variables & Root Settings
    ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
   /* Lawyer Theme Colors */
   --primary-gold: #EDAB41;
@@ -52,10 +54,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+ }
 
 body {
-  font-family: 'Raleway', 'Atkinson', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #333;
   line-height: 1.8;
   overflow-x: hidden;
@@ -66,6 +68,9 @@ body {
   overflow-wrap: break-word;
   font-size: 16px;
 }
+body, p, a, span, div, li, input, textarea {
+  font-family: 'Roboto', sans-serif;
+}
 
 /* Blog specific body styling */
 body.blog-layout {
@@ -73,7 +78,7 @@ body.blog-layout {
   background-size: 100% 600px;
   color: rgb(var(--gray-dark));
   font-size: 20px;
-  font-family: "Atkinson", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 /* ========================================
