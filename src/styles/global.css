@@ -1145,7 +1145,7 @@ main {
 .zalo-chat-btn {
   position: fixed;
   bottom: 79px;
-  right: 26px;
+  right: 30px;
   transition: all 0.3s ease;
   z-index: 9999;
   animation: heartbeat 1.8s ease-in-out infinite;
