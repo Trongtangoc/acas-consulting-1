@@ -1,64 +1,40 @@
+// src/components/Header.astro
 ---
 import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
+import TopBar from './TopBar.astro';
 ---
 
-<header>
-	<div class="header-top">
-		<div class="container">
-			<div class="contact-info">
-				<span class="phone">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-					</svg>
-					CALL US: +84 935.996.043
-				</span>
-			</div>
-			<div class="header-actions">
-				<a href="/request-consultation" class="btn-consultation">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-					</svg>
-					REQUEST A FREE CONSULTATION
-				</a>
-				<button class="search-btn" aria-label="Search">
-					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<circle cx="11" cy="11" r="8"></circle>
-						<path d="m21 21-4.35-4.35"></path>
-					</svg>
-				</button>
-			</div>
-		</div>
-	</div>
+<TopBar />
 
-	<nav class="main-nav">
-		<div class="container">
-			<div class="nav-wrapper">
-				<div class="logo">
-					<a href="/">
-						<img src="/logo.png" alt={SITE_TITLE} />
-											</a>
-				</div>
-
-				<div class="nav-menu">
-					<HeaderLink href="/">Home</HeaderLink>
-					<HeaderLink href="/about">About</HeaderLink>
-					<HeaderLink href="/news">News</HeaderLink>
-					<HeaderLink href="/features">Service</HeaderLink>
-					<HeaderLink href="/practice-areas">Practice Areas</HeaderLink>
-					<HeaderLink href="/qa">Q&A</HeaderLink>
-					<HeaderLink href="/contacts">Contacts</HeaderLink>
-				</div>
-
-				<button class="mobile-toggle" aria-label="Toggle menu">
-					<span></span>
-					<span></span>
-					<span></span>
-				</button>
-			</div>
-		</div>
-	</nav>
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-area">
+      <img src="/logo.png" alt="Logo" />
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#attorneys">Attorneys</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#practice">Practice Areas</a></li>
+        <li><a href="#qa">Q&A</a></li>
+        <li><a href="#contact">Contacts</a></li>
+      </ul>
+    </nav>
+    <div class="header-search">
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="mobile-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
 </header>
+
 
 <style>
 	* {
