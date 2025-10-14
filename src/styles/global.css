@@ -1157,8 +1157,9 @@ main {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 .zalo-chat-btn img {
-  width: 34px;
-  height: 34px;
+  width: 40px ;
+  height: 40px ;
+  padding-right: 3px
 }
 .zalo-chat-btn:hover {
   transform: scale(1.1);
