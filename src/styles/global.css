@@ -1090,6 +1090,7 @@ main {
   cursor: pointer;
   transition: all 0.3s;
   z-index: 999;
+  border-radius: 50%
 }
 
 .back-to-top:hover {
