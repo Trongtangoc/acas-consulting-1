@@ -1143,13 +1143,29 @@ main {
 /* CSS Zalo */
 .zalo-chat-btn {
   position: fixed;
-  bottom: 79px;
-  right: 25px;
-    border-radius: 50%;
-    padding: 10px;
+  bottom: 55px;
+  right: 15px;
+  padding: 10px;
   transition: all 0.3s ease;
   z-index: 9999;
+  animation: heartbeat 1.8s ease-in-out infinite;
 }
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.08);
+  }
+  40% {
+    transform: scale(0.95);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  80% {
+    transform: scale(0.98);
+  }}
 .zalo-chat-btn:hover {
   transform: scale(1.1);
   }
