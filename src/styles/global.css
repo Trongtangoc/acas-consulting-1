@@ -201,7 +201,7 @@ main {
   width: 100%;
   max-width: calc(100% - 1em);
   margin: auto;
-  /* padding: 3em 1em; */
+  padding: 1em;
 }
 
 /* ========================================
