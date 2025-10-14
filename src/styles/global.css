@@ -1338,6 +1338,21 @@ main {
   transition: all 0.3s;
   z-index: 999;
   position: relative;
+  animation: pulse 1.8s infinite;
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.08);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  75% {
+    transform: scale(1.05);
+  }
 }
 
 .fab-main:hover {
