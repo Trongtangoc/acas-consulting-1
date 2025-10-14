@@ -70,7 +70,7 @@ document.querySelector('.back-to-top').addEventListener('click', () => {
 // ==========================================
 // FORM SUBMISSION - GOOGLE SHEETS
 // ==========================================
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbycA6qaRSMj3QlBjELQejOuy2p0ehXC9blWuYlPE6JSAHpuBoDuYXEDXIrE_GdB7zaO/exec';
+const GOOGLE_SCRIPT_URL = "https://acas-consulting-1.acasconsulting.workers.dev/";
 
 const form = document.getElementById('consultationForm');
 const formMessage = document.getElementById('formMessage');
