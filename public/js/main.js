@@ -69,7 +69,8 @@ document.querySelector('.back-to-top').addEventListener('click', () => {
 // ==========================================
 // FORM SUBMISSION - GOOGLE SHEETS via Cloudflare Worker
 // ==========================================
-const GOOGLE_SCRIPT_URL = "https://acas-consulting-1.acasconsulting.workers.dev/"; // hoặc /api/submit nếu đã map route
+const GOOGLE_SCRIPT_URL = "https://acaslawfirm.com/api/";
+ // hoặc /api/submit nếu đã map route
 
 const form = document.getElementById('consultationForm');
 const formMessage = document.getElementById('formMessage');
