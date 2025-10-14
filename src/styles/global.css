@@ -1236,7 +1236,9 @@ main {
   }
 
   
-/* CSS Zalo */
+/* ========================================
+   ZALO
+   ======================================== */
 .zalo-chat-btn {
   position: fixed;
   bottom: 79px;
@@ -1264,4 +1266,54 @@ main {
 .zalo-chat-btn:hover {
   transform: scale(1.1);
   }
+
+/* ========================================
+  Messenger Chat Button 
+   ======================================== */
+/* Messenger Floating Button */
+.messenger-btn {
+  position: fixed;
+  bottom: 140px; /* nằm trên nút Zalo */
+  right: 26px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #0084ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 9999;
+  transition: all 0.3s ease;
+  animation: pulse 1.8s infinite;
+}
+
+.messenger-btn img {
+  width: 30px;
+  height: 30px;
+  filter: brightness(100%) contrast(110%);
+}
+
+.messenger-btn:hover {
+  transform: scale(1.1);
+  background: #006ee6;
+}
+
+/* Hiệu ứng nhịp tim */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.08);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+}
+
 
