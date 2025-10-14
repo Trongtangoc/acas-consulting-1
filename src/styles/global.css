@@ -201,7 +201,7 @@ main {
   width: 100%;
   max-width: calc(100% - 2em);
   margin: auto;
-  padding: 3em 1em;
+  /* padding: 3em 1em; */
 }
 
 /* ========================================
@@ -1066,9 +1066,9 @@ main {
     font-size: 18px;
   }
 
-  main {
+  /* main {
     padding: 1em;
-  }
+  } */
 
   .top-bar-left {
     flex-direction: column;
@@ -1135,11 +1135,13 @@ main {
   body {
     font-size: 18px;
   }
-
-  main {
+   /* main {
     padding: 1em;
   }
+
 }
+
+  
 /* CSS Zalo */
 .zalo-chat-btn {
   position: fixed;
