@@ -1,4 +1,3 @@
-
 // ==========================================
 // MOBILE MENU
 // ==========================================
@@ -32,7 +31,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', () => {
   let current = '';
   const sections = document.querySelectorAll('section');
-  
+
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.clientHeight;
@@ -68,9 +67,9 @@ document.querySelector('.back-to-top').addEventListener('click', () => {
 });
 
 // ==========================================
-// FORM SUBMISSION - GOOGLE SHEETS
+// FORM SUBMISSION - GOOGLE SHEETS via Cloudflare Worker
 // ==========================================
-const GOOGLE_SCRIPT_URL = "https://acas-consulting-1.acasconsulting.workers.dev/";
+const GOOGLE_SCRIPT_URL = "https://acas-consulting-1.acasconsulting.workers.dev/"; // hoặc /api/submit nếu đã map route
 
 const form = document.getElementById('consultationForm');
 const formMessage = document.getElementById('formMessage');
@@ -103,12 +102,13 @@ form.addEventListener('submit', async (e) => {
   };
 
   try {
-    await fetch(GOOGLE_SCRIPT_URL, {
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
-      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
+
+    if (!response.ok) throw new Error('Network response was not ok');
 
     formMessage.className = 'form-message success';
     formMessage.textContent = '✅ Thank you! Your consultation request has been received.';
