@@ -1316,7 +1316,7 @@ main {
 } */
 .contact-fab {
   position: fixed;
-  bottom: 40px;
+  bottom: 70px;
   right: 26px;
   z-index: 9999;
 }
