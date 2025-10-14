@@ -1,0 +1,42 @@
+---
+const phoneNumber = "+84935996043";
+const whatsappNumber = "+84935996043"; // dùng định dạng quốc tế
+const message = encodeURIComponent("Hello! I'd like to get in touch with you.");
+---
+
+<div class="contact-fab">
+  <!-- Nút chính -->
+  <button class="fab-main" id="fab-toggle" aria-label="Contact us">
+    <i class="fas fa-comments"></i>
+  </button>
+
+  <!-- Các nút con -->
+  <div class="fab-options" id="fab-options">
+    <a href={`https://m.me/acasconsulting`} target="_blank" class="fab-btn messenger" aria-label="Messenger">
+       <img
+        src="/img/messager.png"
+        alt="Messenger" width="55" height="55"
+        />
+    </a>
+    <a href={`https://wa.me/${whatsappNumber}?text=${message}`} target="_blank" class="fab-btn whatsapp" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://zalo.me/0935996043" target="_blank" class="fab-btn zalo" aria-label="Zalo">
+        <img src="/img/zalo-chat-new.png" alt="Zalo" width="45" height="45" />
+    </a>
+    <a href={`tel:${phoneNumber}`} class="fab-btn call" aria-label="Call us">
+        <i class="fas fa-phone"></i>
+    </a>
+  </div>
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("fab-toggle");
+  const container = document.querySelector(".contact-fab");
+  toggle.addEventListener("click", () => {
+    container.classList.toggle("active");
+  });
+});
+</script>
