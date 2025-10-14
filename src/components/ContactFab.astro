@@ -2,6 +2,7 @@
 const phoneNumber = "+84935996043";
 const whatsappNumber = "+84935996043"; // dùng định dạng quốc tế
 const message = encodeURIComponent("Hello! I'd like to get in touch with you.");
+const pageUrl = "https://m.me/acasconsulting";
 ---
 
 <div class="contact-fab">
@@ -12,7 +13,7 @@ const message = encodeURIComponent("Hello! I'd like to get in touch with you.");
 
   <!-- Các nút con -->
   <div class="fab-options" id="fab-options">
-    <a href={`https://m.me/acasconsulting`} target="_blank" class="fab-btn messenger" aria-label="Messenger">
+    <a href={pageUrl} target="_blank" class="fab-btn messenger" aria-label="Messenger">
        <img
         src="/img/messager.png"
         alt="Messenger" width="55" height="55"
