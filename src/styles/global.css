@@ -1143,17 +1143,14 @@ main {
 /* CSS Zalo */
 .zalo-chat-btn {
   position: fixed;
-  bottom: 25px;
+  bottom: 79px;
   right: 25px;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
-  padding: 10px;
+    border-radius: 50%;
+    padding: 10px;
   transition: all 0.3s ease;
   z-index: 9999;
 }
 .zalo-chat-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
-}
+  }
 
