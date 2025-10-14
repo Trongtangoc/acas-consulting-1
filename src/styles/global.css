@@ -1143,9 +1143,8 @@ main {
 /* CSS Zalo */
 .zalo-chat-btn {
   position: fixed;
-  bottom: 55px;
-  right: 15px;
-  padding: 10px;
+  bottom: 79px;
+  right: 26px;
   transition: all 0.3s ease;
   z-index: 9999;
   animation: heartbeat 1.8s ease-in-out infinite;
