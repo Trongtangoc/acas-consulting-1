@@ -477,10 +477,10 @@ main {
   animation: fadeSlide 15s infinite;
 }
 
-@keyframes fadeSlide {
+/* @keyframes fadeSlide {
   0%, 33% { opacity: 1; }
   36%, 100% { opacity: 0; }
-}
+} */
 
 .slide-content {
   text-align: center;
