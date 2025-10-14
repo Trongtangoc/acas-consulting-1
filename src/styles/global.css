@@ -580,17 +580,17 @@ main {
 .about-section,
 .news-testimonials,
 .consultation-section {
-  padding: 100px 0;
+  padding: 50px 0;
   background: #fff;
 }
 
 .services-section {
-  padding: 100px 0;
+  padding: 50px 0;
   background: var(--light-gray);
 }
 
 .team-section {
-  padding: 100px 0;
+  padding: 50px 0;
   background: var(--dark-bg);
   color: #fff;
 }
