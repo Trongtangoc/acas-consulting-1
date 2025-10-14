@@ -1143,26 +1143,17 @@ main {
 /* CSS Zalo */
 .zalo-chat-btn {
   position: fixed;
-  bottom: 79px;
-  right: 30px;
-  background-color: #0068ff;
-  width: 45px;
-  height: 47px;
- 
-  display: flex;
-  justify-content: center;
-  align-items: center;
- 
+  bottom: 25px;
+  right: 25px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  transition: all 0.3s ease;
   z-index: 9999;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-.zalo-chat-btn img {
-  width: 40px ;
-  height: 40px ;
-  padding-right: 3px
 }
 .zalo-chat-btn:hover {
   transform: scale(1.1);
-  opacity: 0.9;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
 }
 
