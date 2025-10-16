@@ -71,10 +71,9 @@ document.querySelector('.back-to-top').addEventListener('click', () => {
 // ==========================================
 // const GOOGLE_SCRIPT_URL = "https://acas-consulting-1.acasconsulting.workers.dev/";
 // const GOOGLE_SCRIPT_URL = "https://acas-consulting-1.acasconsulting.workers.dev/proxy";
-const GOOGLE_SCRIPT_URL = "https://acaslawfirm.com/api/proxy";
-
 // hoặc /api/submit nếu đã map route
 
+const GOOGLE_SCRIPT_URL = "https://acaslawfirm.com/api/proxy";
 const form = document.getElementById('consultationForm');
 const formMessage = document.getElementById('formMessage');
 
