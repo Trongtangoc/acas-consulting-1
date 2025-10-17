@@ -128,3 +128,29 @@ form.addEventListener('submit', async (e) => {
     submitBtn.textContent = originalText;
   }
 });
+<!-- ✅ Script validate -->
+
+  const form = document.getElementById("consultationForm");
+  const formMessage = document.getElementById("formMessage");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const phone = form.querySelector('input[name="phone"]').value.trim();
+    const regex = /^\+?\d{9,15}$/; // +optional, 9-15 số
+
+    if (!regex.test(phone)) {
+      formMessage.textContent =
+        "❌ Please enter a valid phone number (9–15 digits, may start with +)";
+      formMessage.style.color = "red";
+      return;
+    }
+
+    // Nếu hợp lệ
+    formMessage.textContent = "✅ Form submitted successfully!";
+    formMessage.style.color = "green";
+
+    // TODO: gửi dữ liệu qua API hoặc email
+    form.reset();
+  });
+
