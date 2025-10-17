@@ -66,11 +66,11 @@ document.querySelector('.back-to-top').addEventListener('click', () => {
   });
 });
 
+
 // ==========================================
 // FORM SUBMISSION - GOOGLE SHEETS via Cloudflare Worker
 // ==========================================
 const GOOGLE_SCRIPT_URL = "https://acaslawfirm.com/api/proxy";
- // hoặc /api/submit nếu đã map route
 
 const form = document.getElementById('consultationForm');
 const formMessage = document.getElementById('formMessage');
@@ -78,9 +78,19 @@ const formMessage = document.getElementById('formMessage');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
+  // ✅ Validate phone trước khi gửi
+  const phone = form.querySelector('input[name="phone"]').value.trim();
+  const regex = /^\+?\d{9,15}$/;
+  if (!regex.test(phone)) {
+    formMessage.textContent =
+      "❌ Please enter a valid phone number (9–15 digits, may start with +)";
+    formMessage.style.color = "red";
+    return;
+  }
+
+  // ✅ Nếu hợp lệ mới gửi đi
   const submitBtn = form.querySelector('.btn-submit');
   const originalText = submitBtn.textContent;
-
   submitBtn.disabled = true;
   submitBtn.textContent = 'SENDING...';
 
@@ -88,7 +98,7 @@ form.addEventListener('submit', async (e) => {
   const data = {
     name: formData.get('name'),
     email: formData.get('email'),
-    phone: formData.get('phone') || 'N/A',
+    phone: phone,
     practice_area: formData.get('practice_area') || 'Not specified',
     message: formData.get('message'),
     timestamp: new Date().toLocaleString('en-US', {
@@ -113,6 +123,7 @@ form.addEventListener('submit', async (e) => {
 
     formMessage.className = 'form-message success';
     formMessage.textContent = '✅ Thank you! Your consultation request has been received.';
+    formMessage.style.color = 'green';
     form.reset();
 
     setTimeout(() => {
@@ -122,35 +133,12 @@ form.addEventListener('submit', async (e) => {
   } catch (error) {
     formMessage.className = 'form-message error';
     formMessage.textContent = '❌ Sorry, there was an error. Please try again or call us at 0935.996.043';
+    formMessage.style.color = 'red';
     console.error('Error:', error);
   } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = originalText;
   }
 });
-<!-- ✅ Script validate -->
 
-  const form = document.getElementById("consultationForm");
-  const formMessage = document.getElementById("formMessage");
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const phone = form.querySelector('input[name="phone"]').value.trim();
-    const regex = /^\+?\d{9,15}$/; // +optional, 9-15 số
-
-    if (!regex.test(phone)) {
-      formMessage.textContent =
-        "❌ Please enter a valid phone number (9–15 digits, may start with +)";
-      formMessage.style.color = "red";
-      return;
-    }
-
-    // Nếu hợp lệ
-    formMessage.textContent = "✅ Form submitted successfully!";
-    formMessage.style.color = "green";
-
-    // TODO: gửi dữ liệu qua API hoặc email
-    form.reset();
-  });
 
