@@ -1,0 +1,434 @@
+/* ========================================
+   Consulting Page Styles
+   Integrated with Main Theme
+   ======================================== */
+
+/* ========================================
+   Hero Section - Consulting Page
+   ======================================== */
+.consulting-container {
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+              url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&q=80') center/cover;
+  min-height: calc(100vh - 200px);
+  padding: 80px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
+   Section Header - Consulting
+   ======================================== */
+.consulting-header {
+  text-align: center;
+  margin-bottom: 60px;
+  color: #fff;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.consulting-header h1 {
+  font-size: 3.052em;
+  font-weight: 300;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+}
+
+.consulting-header p {
+  font-size: 18px;
+  opacity: 0.9;
+  margin: 0;
+  letter-spacing: 1px;
+  font-style: italic;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ========================================
+   Packages Grid
+   ======================================== */
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  max-width: 1170px;
+  margin: 0 auto 50px;
+  padding: 0 15px;
+}
+
+/* ========================================
+   Package Card
+   ======================================== */
+.package-card {
+  background: #fff;
+  border-radius: 0;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 
+              0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  border-top: 3px solid transparent;
+}
+
+.package-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  border-top-color: var(--primary-gold);
+}
+
+.package-card.featured {
+  border: 2px solid var(--primary-gold);
+  border-top: 3px solid var(--primary-gold);
+}
+
+.badge {
+  position: absolute;
+  top: -15px;
+  right: 30px;
+  background: var(--primary-gold);
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* ========================================
+   Card Content
+   ======================================== */
+.card-content {
+  flex: 1;
+  margin-bottom: 30px;
+}
+
+.package-title {
+  font-size: 1.953em;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  color: #1a1a1a;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+}
+
+.package-price {
+  font-size: 2.441em;
+  font-weight: 700;
+  color: var(--primary-gold);
+  margin: 0 0 20px 0;
+  letter-spacing: 1px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.package-description {
+  color: var(--text-gray);
+  font-size: 15px;
+  margin: 0 0 25px 0;
+  line-height: 1.8;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ========================================
+   Features List
+   ======================================== */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+}
+
+.features-list li {
+  padding: 12px 0;
+  color: var(--text-gray);
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  line-height: 1.8;
+  font-family: 'Roboto', sans-serif;
+}
+
+.features-list li:last-child {
+  border-bottom: none;
+}
+
+.features-list li::before {
+  content: '✓';
+  color: var(--primary-gold);
+  font-weight: bold;
+  margin-right: 15px;
+  font-size: 16px;
+}
+
+/* ========================================
+   Card Bottom (Button & QR)
+   ======================================== */
+.card-bottom {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+/* ========================================
+   Buttons - Consulting
+   ======================================== */
+.btn-payment {
+  width: 100%;
+  padding: 18px;
+  background: var(--primary-gold);
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 25px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn-payment:hover {
+  background: var(--dark-bg);
+  color: #fff;
+}
+
+/* ========================================
+   QR Section
+   ======================================== */
+.qr-section {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.qr-label {
+  font-size: 11px;
+  color: var(--text-gray);
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+}
+
+#qrcode-1,
+#qrcode-2 {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* ========================================
+   Modal Styles
+   ======================================== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 0;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+  color: #1a1a1a;
+  margin: 0 0 15px 0;
+  font-size: 1.953em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+}
+
+.modal-content p {
+  font-size: 15px;
+  color: var(--text-gray);
+  margin: 10px 0;
+  line-height: 1.8;
+  font-family: 'Roboto', sans-serif;
+}
+
+.modal-price {
+  font-size: 2.441em;
+  color: var(--primary-gold);
+  margin: 20px 0;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+}
+
+.modal-qr {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.close-btn {
+  background: transparent;
+  border: 2px solid var(--text-gray);
+  padding: 12px 30px;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+.close-btn:hover {
+  background: var(--primary-gold);
+  border-color: var(--primary-gold);
+  color: #fff;
+}
+
+/* ========================================
+   Footer - Consulting Page
+   ======================================== */
+.consulting-footer {
+  text-align: center;
+  color: #fff;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 50px 15px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.consulting-footer p {
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.consulting-footer p strong {
+  color: var(--primary-gold);
+  font-weight: 600;
+}
+
+.consulting-footer a {
+  color: var(--primary-gold);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+.consulting-footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* ========================================
+   Responsive Design - Consulting
+   ======================================== */
+@media (max-width: 1024px) {
+  .packages-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .consulting-header h1 {
+    font-size: 2.441em;
+  }
+}
+
+@media (max-width: 768px) {
+  .consulting-container {
+    padding: 60px 0;
+    min-height: auto;
+  }
+
+  .consulting-header {
+    margin-bottom: 40px;
+  }
+
+  .consulting-header h1 {
+    font-size: 1.953em;
+    margin-bottom: 15px;
+  }
+
+  .consulting-header p {
+    font-size: 14px;
+  }
+
+  .packages-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+  }
+
+  .package-card {
+    padding: 30px;
+  }
+
+  .package-title {
+    font-size: 1.563em;
+  }
+
+  .package-price {
+    font-size: 1.953em;
+  }
+
+  .package-description {
+    font-size: 14px;
+  }
+
+  .features-list li {
+    font-size: 13px;
+  }
+
+  .badge {
+    right: 20px;
+    padding: 6px 15px;
+    font-size: 10px;
+  }
+
+  .modal-content {
+    padding: 30px 20px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.563em;
+  }
+
+  .modal-price {
+    font-size: 1.953em;
+  }
+
+  .consulting-footer {
+    padding: 30px 15px;
+  }
+}
