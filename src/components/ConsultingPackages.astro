@@ -1,3 +1,4 @@
+---
 interface Package {
 	id: number;
 	title: string;
@@ -43,9 +44,256 @@ const packages: Package[] = [
 ];
 
 function formatPrice(price: number): string {
-	return `${price}`;
+	return `$${price}`;
 }
 ---
+
+<style>
+	.consulting-header {
+		text-align: center;
+		margin-bottom: 3rem;
+	}
+
+	.consulting-header h1 {
+		font-size: 2.5rem;
+		margin-bottom: 0.5rem;
+		color: #1a202c;
+	}
+
+	.consulting-header p {
+		font-size: 1.1rem;
+		color: #666;
+	}
+
+	.packages-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		gap: 2rem;
+		margin-bottom: 3rem;
+		max-width: 1200px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.package-card {
+		border: 2px solid #e2e8f0;
+		border-radius: 12px;
+		overflow: hidden;
+		transition: all 0.3s ease;
+		display: flex;
+		flex-direction: column;
+		background: white;
+		position: relative;
+	}
+
+	.package-card:hover {
+		border-color: #667eea;
+		box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+		transform: translateY(-5px);
+	}
+
+	.package-card.featured {
+		border-color: #667eea;
+		box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+	}
+
+	.badge {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		color: white;
+		padding: 0.5rem 1rem;
+		border-radius: 0 0 0 12px;
+		font-weight: 600;
+		font-size: 0.85rem;
+	}
+
+	.card-content {
+		padding: 2rem;
+		flex-grow: 1;
+	}
+
+	.package-title {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
+		color: #1a202c;
+	}
+
+	.package-price {
+		font-size: 2.5rem;
+		font-weight: bold;
+		color: #667eea;
+		margin-bottom: 1rem;
+	}
+
+	.package-description {
+		color: #666;
+		margin-bottom: 1.5rem;
+		font-size: 0.95rem;
+	}
+
+	.features-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.features-list li {
+		padding: 0.75rem 0;
+		color: #555;
+		font-size: 0.9rem;
+		border-bottom: 1px solid #f0f0f0;
+		padding-left: 1.5rem;
+		position: relative;
+	}
+
+	.features-list li:before {
+		content: '✓';
+		position: absolute;
+		left: 0;
+		color: #667eea;
+		font-weight: bold;
+	}
+
+	.features-list li:last-child {
+		border-bottom: none;
+	}
+
+	.card-bottom {
+		padding: 0 2rem 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.btn-payment {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		color: white;
+		border: none;
+		padding: 0.75rem 1.5rem;
+		border-radius: 8px;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		font-size: 0.95rem;
+	}
+
+	.btn-payment:hover {
+		transform: scale(1.02);
+		box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+	}
+
+	.qr-section {
+		text-align: center;
+	}
+
+	.qr-label {
+		font-size: 0.85rem;
+		color: #666;
+		margin-bottom: 0.75rem;
+		font-weight: 500;
+	}
+
+	.consulting-footer {
+		text-align: center;
+		padding: 2rem;
+		background: #f9fafb;
+		border-top: 1px solid #e2e8f0;
+		margin-top: 3rem;
+	}
+
+	.consulting-footer p {
+		margin-bottom: 1rem;
+		color: #555;
+	}
+
+	.consulting-footer a {
+		color: #667eea;
+		text-decoration: none;
+		font-weight: 500;
+		transition: color 0.3s;
+	}
+
+	.consulting-footer a:hover {
+		color: #764ba2;
+	}
+
+	.modal {
+		display: none;
+		position: fixed;
+		z-index: 1000;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.5);
+		animation: fadeIn 0.3s ease;
+	}
+
+	.modal.active {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	.modal-content {
+		background-color: white;
+		padding: 2rem;
+		border-radius: 12px;
+		text-align: center;
+		max-width: 400px;
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+		animation: slideIn 0.3s ease;
+	}
+
+	@keyframes slideIn {
+		from {
+			transform: translateY(-50px);
+			opacity: 0;
+		}
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
+	.modal-content h2 {
+		margin-bottom: 1rem;
+		color: #1a202c;
+	}
+
+	.modal-qr {
+		margin: 1.5rem 0;
+		display: flex;
+		justify-content: center;
+	}
+
+	.close-btn {
+		background-color: #e2e8f0;
+		color: #333;
+		border: none;
+		padding: 0.75rem 1.5rem;
+		border-radius: 8px;
+		cursor: pointer;
+		font-weight: 600;
+		margin-top: 1rem;
+		transition: all 0.3s;
+	}
+
+	.close-btn:hover {
+		background-color: #cbd5e0;
+	}
+</style>
 
 <div class="consulting-header">
 	<h1>🚀 Legal & Business Consulting</h1>
@@ -57,19 +305,16 @@ function formatPrice(price: number): string {
 		packages.map((pkg) => (
 			<div class={`package-card ${pkg.badge ? 'featured' : ''}`}>
 				{pkg.badge && <div class="badge">{pkg.badge}</div>}
-
 				<div class="card-content">
 					<h2 class="package-title">{pkg.title}</h2>
 					<div class="package-price">{formatPrice(pkg.price)}</div>
 					<p class="package-description">{pkg.description}</p>
-
 					<ul class="features-list">
 						{pkg.features.map((feature) => (
 							<li>{feature}</li>
 						))}
 					</ul>
 				</div>
-
 				<div class="card-bottom">
 					<button
 						class="btn-payment"
@@ -77,7 +322,6 @@ function formatPrice(price: number): string {
 					>
 						Choose This Package
 					</button>
-
 					<div class="qr-section">
 						<div class="qr-label">Payment QR Code</div>
 						<div id={`qrcode-${pkg.id}`}></div>
@@ -93,18 +337,97 @@ function formatPrice(price: number): string {
 	<a href="/">← Back to homepage</a>
 </div>
 
-<!-- Modal Thanh toán -->
 <div id="paymentModal" class="modal">
 	<div class="modal-content">
 		<h2 id="modalTitle">Payment</h2>
 		<p id="modalPrice" style="font-size: 24px; color: #667eea; margin: 10px 0;"></p>
-
 		<div class="modal-qr" id="modalQR"></div>
-
 		<p style="color: #666; margin: 20px 0; font-size: 14px;">
 			📱 Scan QR code to pay<br />
 			After payment, please send your receipt to our team
 		</p>
-
 		<button class="close-btn" onclick="closePaymentModal()">Close</button>
 	</div>
+</div>
+
+<script>
+	declare global {
+		interface Window {
+			QRCode: any;
+			showPaymentModal: (id: number, duration: string, price: number) => void;
+			closePaymentModal: () => void;
+		}
+	}
+
+	const qrData: Record<number, string> = {
+		1: 'https://vietqr.io/billing/1323000',
+		2: 'https://vietqr.io/billing/2133000',
+	};
+
+	function initQRCodes() {
+		if (!window.QRCode) {
+			console.warn('QRCode library not loaded');
+			return;
+		}
+
+		[1, 2].forEach((id) => {
+			const element = document.getElementById(`qrcode-${id}`);
+			if (element && !element.querySelector('canvas')) {
+				new window.QRCode(element, {
+					text: qrData[id],
+					width: 150,
+					height: 150,
+					colorDark: '#667eea',
+					colorLight: '#ffffff',
+					correctLevel: window.QRCode.CorrectLevel.H,
+				});
+			}
+		});
+	}
+
+	function showPaymentModal(packageId: number, packageName: string, price: number) {
+		const modal = document.getElementById('paymentModal');
+		if (!modal) return;
+
+		const modalTitle = document.getElementById('modalTitle');
+		const modalPrice = document.getElementById('modalPrice');
+		const modalQR = document.getElementById('modalQR');
+
+		if (modalTitle) modalTitle.textContent = `Payment - ${packageName}`;
+		if (modalPrice) modalPrice.textContent = `${price}`;
+
+		if (modalQR) {
+			modalQR.innerHTML = '';
+			if (window.QRCode) {
+				new window.QRCode(modalQR, {
+					text: qrData[packageId],
+					width: 200,
+					height: 200,
+					colorDark: '#667eea',
+					colorLight: '#ffffff',
+					correctLevel: window.QRCode.CorrectLevel.H,
+				});
+			}
+		}
+
+		if (modal) modal.classList.add('active');
+	}
+
+	function closePaymentModal() {
+		const modal = document.getElementById('paymentModal');
+		if (modal) modal.classList.remove('active');
+	}
+
+	window.showPaymentModal = showPaymentModal;
+	window.closePaymentModal = closePaymentModal;
+
+	window.addEventListener('click', (event) => {
+		const modal = document.getElementById('paymentModal');
+		if (event.target === modal) {
+			closePaymentModal();
+		}
+	});
+
+	document.addEventListener('astro:page-load', initQRCodes);
+	window.addEventListener('load', initQRCodes);
+</script>
