@@ -6,10 +6,14 @@ import ConsultingPackages from '../components/ConsultingPackages.astro';
 import '../styles/consulting.css';
 ---
 
-<!DOCTYPE html>
+---
+// Đây là page routing, không phải SPA route
+---
+
 <html lang="en">
 	<head>
 		<BaseHead title="Legal & Business Consulting | ACAS" description="Professional legal and business consulting services" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 	</head>
 	<body>
 		<Header />
