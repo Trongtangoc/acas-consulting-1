@@ -62,7 +62,7 @@ function formatPrice(price: number): string {
 
 				<div class="card-content">
 					<h2 class="package-title">{pkg.title}</h2>
-					<div class="package-price">${formatPrice(pkg.price)}</div>
+					<div class="package-price">${pkg.price}</div>
 					<p class="package-description">{pkg.description}</p>
 
 					<ul class="features-list">
@@ -158,7 +158,7 @@ function formatPrice(price: number): string {
 		const modalQR = document.getElementById('modalQR');
 
 		if (modalTitle) modalTitle.textContent = `Payment - ${packageName}`;
-		if (modalPrice) modalPrice.textContent = formatPrice(price);
+		if (modalPrice) modalPrice.textContent = `${price}`;
 
 		if (modalQR) {
 			modalQR.innerHTML = '';
