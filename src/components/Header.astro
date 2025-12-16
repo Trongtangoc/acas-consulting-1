@@ -11,17 +11,17 @@ import ContactFab from '../components/ContactFab.astro';
 <header class="main-header">
   <div class="header-container">
     <div class="logo-area">
-      <a href="#home"><img src="/logo.png" alt="Logo" /></a>
+      <a href="/" class="logo-link"><img src="/logo.png" alt="Logo" /></a>
     </div>
     <nav class="main-nav">
       <ul>
-        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="/" class="active">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#attorneys">Attorneys</a></li>
         <li><a href="#news">News</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#practice">Practice Areas</a></li>
-		<li><a href="/consulting">Consulting Packages</a></li>
+        <li><a href="/consulting" class="consulting-link">Consulting Packages</a></li>
         <li><a href="#qa">Q&A</a></li>
         <li><a href="#contact">Contacts</a></li>
       </ul>
@@ -134,119 +134,174 @@ import ContactFab from '../components/ContactFab.astro';
 	}
 
 	/* Main Navigation */
-	.main-nav {
+	.main-header {
 		background: white;
 		padding: 1rem 0;
 	}
 
-	.nav-wrapper {
+	.header-container {
+		max-width: 1170px;
+		margin: 0 auto;
+		padding: 0 15px;
 		display: flex;
-		align-items: center;
 		justify-content: space-between;
-		gap: 2rem;
+		align-items: center;
 	}
 
-	.logo a {
+	.logo-area {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
-		text-decoration: none;
-		color: inherit;
 	}
 
-	.logo img {
-		height: 50px;
+	.logo-link {
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+	}
+
+	.logo-area img {
+		height: 60px;
 		width: auto;
+		transition: transform 0.3s ease;
 	}
 
-	.logo-text {
+	.logo-area img:hover {
+		transform: scale(1.05);
+	}
+
+	.main-nav ul {
 		display: flex;
-		flex-direction: column;
+		list-style: none;
+		gap: 5px;
+		margin: 0;
+		padding: 0;
 	}
 
-	.site-title {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: #1f2937;
-		letter-spacing: 0.02em;
-	}
-
-	.tagline {
-		font-size: 0.65rem;
-		color: #c49b63;
-		letter-spacing: 0.15em;
-		font-weight: 600;
-		margin-top: -0.25rem;
-	}
-
-	.nav-menu {
-		display: flex;
-		align-items: center;
-		gap: 0.25rem;
-		flex: 1;
-		justify-content: flex-end;
-	}
-
-	.nav-menu :global(a) {
-		padding: 0.75rem 1.25rem;
-		color: #4b5563;
+	.main-nav a {
+		display: block;
+		padding: 10px 18px;
+		color: #333;
 		text-decoration: none;
-		font-weight: 500;
-		font-size: 0.95rem;
-		border-bottom: 3px solid transparent;
+		font-size: 12px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 1.5px;
 		transition: all 0.3s ease;
 		position: relative;
 	}
 
-	.nav-menu :global(a:hover) {
-		color: #c49b63;
+	.main-nav a:hover,
+	.main-nav a.active {
+		color: #EDAB41;
 	}
 
-	.nav-menu :global(a.active) {
-		color: #c49b63;
-		border-bottom-color: #c49b63;
+	.main-nav a::after {
+		content: '';
+		position: absolute;
+		bottom: 5px;
+		left: 18px;
+		right: 18px;
+		height: 2px;
+		background: #EDAB41;
+		transform: scaleX(0);
+		transition: transform 0.3s ease;
+	}
+
+	.main-nav a:hover::after,
+	.main-nav a.active::after {
+		transform: scaleX(1);
+	}
+
+	/* Consulting Link - Special Style */
+	.consulting-link {
+		background: #EDAB41;
+		color: #fff !important;
+		border-radius: 4px;
+		padding: 10px 20px !important;
+		transition: all 0.3s ease;
+	}
+
+	.consulting-link:hover {
+		background: #2a2a2a !important;
+		color: #fff !important;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(237, 171, 65, 0.3);
+	}
+
+	.consulting-link::after {
+		display: none !important;
+	}
+
+	.header-search {
+		padding: 10px 15px;
+		cursor: pointer;
+		color: #333;
+		transition: color 0.3s ease;
+		font-size: 16px;
+	}
+
+	.header-search:hover {
+		color: #EDAB41;
 	}
 
 	.mobile-toggle {
 		display: none;
 		flex-direction: column;
-		gap: 0.35rem;
+		gap: 5px;
+		cursor: pointer;
 		background: transparent;
 		border: none;
-		cursor: pointer;
-		padding: 0.5rem;
+		padding: 8px;
 	}
 
 	.mobile-toggle span {
 		width: 25px;
 		height: 3px;
-		background: #4b5563;
+		background: #333;
 		border-radius: 2px;
 		transition: all 0.3s ease;
 	}
 
 	.mobile-toggle:hover span {
-		background: #c49b63;
+		background: #EDAB41;
 	}
 
 	/* Responsive Design */
 	@media (max-width: 1024px) {
-		.nav-menu {
+		.main-nav {
 			display: none;
 			position: absolute;
 			top: 100%;
 			left: 0;
 			right: 0;
 			background: white;
-			flex-direction: column;
-			padding: 1rem 0;
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 		}
 
-		.nav-menu :global(a) {
-			width: 100%;
-			padding: 1rem 2rem;
-			border-bottom: 1px solid #f3f4f6;
+		.main-nav.active {
+			display: block;
+		}
+
+		.main-nav ul {
+			flex-direction: column;
+			gap: 0;
+		}
+
+		.main-nav a {
+			padding: 15px 20px;
+			border-bottom: 1px solid #f0f0f0;
+		}
+
+		.main-nav a::after {
+			display: none;
+		}
+
+		.consulting-link {
+			background: #EDAB41;
+			color: #fff !important;
+			border-radius: 0;
+			margin: 10px 20px;
+			display: inline-block;
 		}
 
 		.mobile-toggle {
@@ -255,30 +310,36 @@ import ContactFab from '../components/ContactFab.astro';
 	}
 
 	@media (max-width: 768px) {
-		.header-top {
-			display: none;
+		.header-container {
+			padding: 0 10px;
 		}
 
-		.container {
-			padding: 0 1rem;
+		.logo-area img {
+			height: 50px;
 		}
 
-		.logo img {
-			height: 40px;
+		.main-nav a {
+			font-size: 11px;
+			padding: 10px 15px;
 		}
 
-		.site-title {
-			font-size: 1.25rem;
+		.consulting-link {
+			padding: 10px 15px !important;
 		}
 
-		.tagline {
-			font-size: 0.6rem;
+		.header-search {
+			padding: 8px 10px;
 		}
 	}
 
 	@media (max-width: 640px) {
-		.logo-text {
-			display: none;
+		.logo-area img {
+			height: 45px;
+		}
+
+		.main-nav a {
+			font-size: 10px;
+			padding: 12px 15px;
 		}
 	}
 </style>
@@ -286,13 +347,34 @@ import ContactFab from '../components/ContactFab.astro';
 <script>
 	// Mobile menu toggle
 	const mobileToggle = document.querySelector('.mobile-toggle');
-	const navMenu = document.querySelector('.nav-menu');
+	const mainNav = document.querySelector('.main-nav');
 
-	if (mobileToggle && navMenu) {
+	if (mobileToggle && mainNav) {
 		mobileToggle.addEventListener('click', () => {
-			const isOpen = navMenu.style.display === 'flex';
-			navMenu.style.display = isOpen ? 'none' : 'flex';
+			mainNav.classList.toggle('active');
 		});
 	}
+
+	// Close mobile menu when clicking a link
+	const navLinks = document.querySelectorAll('.main-nav a');
+	navLinks.forEach(link => {
+		link.addEventListener('click', () => {
+			mainNav?.classList.remove('active');
+		});
+	});
+
+	// Set active link based on current page
+	document.addEventListener('astro:page-load', () => {
+		const currentPath = window.location.pathname;
+		navLinks.forEach(link => {
+			const href = link.getAttribute('href');
+			if (href === currentPath || (href === '/' && currentPath === '/')) {
+				link.classList.add('active');
+			} else {
+				link.classList.remove('active');
+			}
+		});
+	});
 </script>
+
 <ContactFab />
