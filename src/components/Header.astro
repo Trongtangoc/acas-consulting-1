@@ -1,6 +1,4 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
 import TopBar from './TopBar.astro';
 import MessengerButton from '../components/MessengerButton.astro';
 import ContactFab from '../components/ContactFab.astro';
@@ -11,17 +9,17 @@ import ContactFab from '../components/ContactFab.astro';
 <header class="main-header">
   <div class="header-container">
     <div class="logo-area">
-      <a href="/" class="logo-link"><img src="/logo.png" alt="Logo" /></a>
+      <a href="/"><img src="/logo.png" alt="Logo" /></a>
     </div>
     <nav class="main-nav">
       <ul>
-        <li><a href="/" class="active">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#attorneys">Attorneys</a></li>
         <li><a href="#news">News</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#practice">Practice Areas</a></li>
-        <li><a href="/consulting" class="consulting-link">Consulting Packages</a></li>
+        <li><a href="/consulting">Consulting Packages</a></li>
         <li><a href="#qa">Q&A</a></li>
         <li><a href="#contact">Contacts</a></li>
       </ul>
@@ -39,104 +37,12 @@ import ContactFab from '../components/ContactFab.astro';
 
 
 <style>
-	* {
-		box-sizing: border-box;
-	}
-
 	header {
 		position: sticky;
 		top: 0;
 		z-index: 1000;
 		background: white;
 		box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-	}
-
-	.container {
-		max-width: 1400px;
-		margin: 0 auto;
-		padding: 0 2rem;
-	}
-
-	/* Header Top Bar */
-	.header-top {
-		background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-		border-bottom: 1px solid #e5e7eb;
-		padding: 0.75rem 0;
-		font-size: 0.875rem;
-	}
-
-	.header-top .container {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	.contact-info {
-		display: flex;
-		gap: 2rem;
-		color: #6b7280;
-	}
-
-	.phone {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-weight: 600;
-		color: #c49b63;
-		letter-spacing: 0.025em;
-	}
-
-	.phone svg {
-		color: #c49b63;
-	}
-
-	.header-actions {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-	}
-
-	.btn-consultation {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.5rem 1.25rem;
-		background: linear-gradient(135deg, #c49b63 0%, #d4af7a 100%);
-		color: white;
-		text-decoration: none;
-		border-radius: 4px;
-		font-weight: 600;
-		font-size: 0.75rem;
-		letter-spacing: 0.05em;
-		transition: all 0.3s ease;
-		box-shadow: 0 2px 8px rgba(196, 155, 99, 0.2);
-	}
-
-	.btn-consultation:hover {
-		background: linear-gradient(135deg, #b8904d 0%, #c49b63 100%);
-		transform: translateY(-1px);
-		box-shadow: 0 4px 12px rgba(196, 155, 99, 0.3);
-	}
-
-	.search-btn {
-		background: transparent;
-		border: none;
-		cursor: pointer;
-		padding: 0.5rem;
-		color: #6b7280;
-		transition: color 0.3s ease;
-		display: flex;
-		align-items: center;
-	}
-
-	.search-btn:hover {
-		color: #c49b63;
-	}
-
-	/* Main Navigation */
-	.main-header {
-		background: white;
-		padding: 1rem 0;
 	}
 
 	.header-container {
@@ -153,20 +59,9 @@ import ContactFab from '../components/ContactFab.astro';
 		align-items: center;
 	}
 
-	.logo-link {
-		display: flex;
-		align-items: center;
-		text-decoration: none;
-	}
-
 	.logo-area img {
 		height: 60px;
 		width: auto;
-		transition: transform 0.3s ease;
-	}
-
-	.logo-area img:hover {
-		transform: scale(1.05);
 	}
 
 	.main-nav ul {
@@ -186,58 +81,18 @@ import ContactFab from '../components/ContactFab.astro';
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 1.5px;
-		transition: all 0.3s ease;
-		position: relative;
+		transition: color 0.3s;
 	}
 
-	.main-nav a:hover,
-	.main-nav a.active {
+	.main-nav a:hover {
 		color: #EDAB41;
-	}
-
-	.main-nav a::after {
-		content: '';
-		position: absolute;
-		bottom: 5px;
-		left: 18px;
-		right: 18px;
-		height: 2px;
-		background: #EDAB41;
-		transform: scaleX(0);
-		transition: transform 0.3s ease;
-	}
-
-	.main-nav a:hover::after,
-	.main-nav a.active::after {
-		transform: scaleX(1);
-	}
-
-	/* Consulting Link - Special Style */
-	.consulting-link {
-		background: #EDAB41;
-		color: #fff !important;
-		border-radius: 4px;
-		padding: 10px 20px !important;
-		transition: all 0.3s ease;
-	}
-
-	.consulting-link:hover {
-		background: #2a2a2a !important;
-		color: #fff !important;
-		transform: translateY(-2px);
-		box-shadow: 0 4px 12px rgba(237, 171, 65, 0.3);
-	}
-
-	.consulting-link::after {
-		display: none !important;
 	}
 
 	.header-search {
 		padding: 10px 15px;
 		cursor: pointer;
 		color: #333;
-		transition: color 0.3s ease;
-		font-size: 16px;
+		transition: color 0.3s;
 	}
 
 	.header-search:hover {
@@ -258,28 +113,22 @@ import ContactFab from '../components/ContactFab.astro';
 		width: 25px;
 		height: 3px;
 		background: #333;
-		border-radius: 2px;
-		transition: all 0.3s ease;
+		transition: all 0.3s;
 	}
 
-	.mobile-toggle:hover span {
-		background: #EDAB41;
-	}
-
-	/* Responsive Design */
 	@media (max-width: 1024px) {
 		.main-nav {
 			display: none;
+		}
+
+		.main-nav.active {
+			display: block;
 			position: absolute;
 			top: 100%;
 			left: 0;
 			right: 0;
 			background: white;
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-		}
-
-		.main-nav.active {
-			display: block;
 		}
 
 		.main-nav ul {
@@ -292,88 +141,18 @@ import ContactFab from '../components/ContactFab.astro';
 			border-bottom: 1px solid #f0f0f0;
 		}
 
-		.main-nav a::after {
-			display: none;
-		}
-
-		.consulting-link {
-			background: #EDAB41;
-			color: #fff !important;
-			border-radius: 0;
-			margin: 10px 20px;
-			display: inline-block;
-		}
-
 		.mobile-toggle {
 			display: flex;
-		}
-	}
-
-	@media (max-width: 768px) {
-		.header-container {
-			padding: 0 10px;
-		}
-
-		.logo-area img {
-			height: 50px;
-		}
-
-		.main-nav a {
-			font-size: 11px;
-			padding: 10px 15px;
-		}
-
-		.consulting-link {
-			padding: 10px 15px !important;
-		}
-
-		.header-search {
-			padding: 8px 10px;
-		}
-	}
-
-	@media (max-width: 640px) {
-		.logo-area img {
-			height: 45px;
-		}
-
-		.main-nav a {
-			font-size: 10px;
-			padding: 12px 15px;
 		}
 	}
 </style>
 
 <script>
-	// Mobile menu toggle
 	const mobileToggle = document.querySelector('.mobile-toggle');
 	const mainNav = document.querySelector('.main-nav');
 
-	if (mobileToggle && mainNav) {
-		mobileToggle.addEventListener('click', () => {
-			mainNav.classList.toggle('active');
-		});
-	}
-
-	// Close mobile menu when clicking a link
-	const navLinks = document.querySelectorAll('.main-nav a');
-	navLinks.forEach(link => {
-		link.addEventListener('click', () => {
-			mainNav?.classList.remove('active');
-		});
-	});
-
-	// Set active link based on current page
-	document.addEventListener('astro:page-load', () => {
-		const currentPath = window.location.pathname;
-		navLinks.forEach(link => {
-			const href = link.getAttribute('href');
-			if (href === currentPath || (href === '/' && currentPath === '/')) {
-				link.classList.add('active');
-			} else {
-				link.classList.remove('active');
-			}
-		});
+	mobileToggle?.addEventListener('click', () => {
+		mainNav?.classList.toggle('active');
 	});
 </script>
 
