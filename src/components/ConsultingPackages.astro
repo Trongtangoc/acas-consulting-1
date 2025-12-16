@@ -336,8 +336,11 @@ function formatPrice(price: number): string {
 <div id="paymentModal" class="modal">
 	<div class="modal-content">
 		<h2 id="modalTitle">Payment</h2>
-		<p id="modalPrice" style="font-size: 24px; color: #667eea; margin: 10px 0;"></p>
-		<div class="modal-qr" id="modalQR"></div>
+		<p class="instruction">Please transfer: <strong id="modalPrice" style="color: #667eea;"></strong></p>
+		<div class="modal-qr" style="min-height: 200px; display: flex; justify-content: center; align-items: center;">
+            <img id="qrImage" src="" alt="QR Code" style="max-width: 250px; display: none; border-radius: 8px;" />
+            <span id="qrLoading">Loading QR...</span>
+        </div>
 		<p style="color: #666; margin: 20px 0; font-size: 14px;">
 			📱 Scan QR code to pay<br />
 			After payment, please send your receipt to our team
@@ -355,18 +358,24 @@ function formatPrice(price: number): string {
 		}
 	}
 
-	// Lấy QR code từ API endpoint
-	async function fetchQRCodeImage(packageId: number) {
-		try {
-			const response = await fetch(`/api/qr/${packageId}`);
-			if (!response.ok) throw new Error('Failed to fetch QR code');
-			const data = await response.json();
-			return data.qrImage; // Trả về base64 hoặc URL ảnh
-		} catch (error) {
-			console.error('Error fetching QR:', error);
-			return null;
-		}
-	}
+	// Biến lưu cache ảnh QR ở client để không phải gọi API nhiều lần
+    let cachedQrBase64 = null;
+
+    // 1. Hàm chỉ gọi 1 lần để lấy ảnh QR tĩnh
+    async function fetchStaticQR() {
+        if (cachedQrBase64) return cachedQrBase64; // Nếu đã có thì dùng luôn
+
+        try {
+            const response = await fetch('/api/qr');
+            if (!response.ok) throw new Error('Failed');
+            const data = await response.json();
+            cachedQrBase64 = data.qrImage; // Lưu lại
+            return data.qrImage;
+        } catch (error) {
+            console.error('Error:', error);
+            return null;
+        }
+    }
 
 	function initQRCodes() {
 		if (!window.QRCode) {
@@ -378,33 +387,40 @@ function formatPrice(price: number): string {
 		// Không generate tất cả lúc load page
 	}
 
-	function showPaymentModal(packageId: number, packageName: string, price: number) {
-		const modal = document.getElementById('paymentModal');
-		if (!modal) return;
+	// 2. Hàm hiển thị Modal
+    async function showPaymentModal(title, price) {
+        const modal = document.getElementById('paymentModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPrice = document.getElementById('modalPrice');
+        const qrImg = document.getElementById('qrImage');
+        const qrLoading = document.getElementById('qrLoading');
 
-		const modalTitle = document.getElementById('modalTitle');
-		const modalPrice = document.getElementById('modalPrice');
-		const modalQR = document.getElementById('modalQR');
+        if (modal) {
+            // Hiển thị modal
+            modal.classList.add('active');
+            
+            // Cập nhật thông tin text
+            if (modalTitle) modalTitle.textContent = `Payment for ${title}`;
+            if (modalPrice) modalPrice.textContent = `$${price}`; // Hoặc format tiền Việt
 
-		if (modalTitle) modalTitle.textContent = `Payment - ${packageName}`;
-		if (modalPrice) modalPrice.textContent = `${price}`;
+            // Logic hiển thị ảnh
+            if (qrImg) {
+                // Nếu ảnh đang ẩn hoặc chưa có src
+                qrImg.style.display = 'none';
+                if (qrLoading) qrLoading.style.display = 'block';
 
-		if (modalQR) {
-			modalQR.innerHTML = '';
-			if (window.QRCode) {
-				new window.QRCode(modalQR, {
-					text: qrData[packageId],
-					width: 200,
-					height: 200,
-					colorDark: '#667eea',
-					colorLight: '#ffffff',
-					correctLevel: window.QRCode.CorrectLevel.H,
-				});
-			}
-		}
-
-		if (modal) modal.classList.add('active');
-	}
+                const base64 = await fetchStaticQR();
+                
+                if (base64) {
+                    qrImg.src = base64;
+                    if (qrLoading) qrLoading.style.display = 'none';
+                    qrImg.style.display = 'block';
+                } else {
+                    if (qrLoading) qrLoading.textContent = "Error loading QR";
+                }
+            }
+        }
+    }
 
 	function closePaymentModal() {
 		const modal = document.getElementById('paymentModal');
