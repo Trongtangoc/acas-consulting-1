@@ -322,10 +322,6 @@ function formatPrice(price: number): string {
 					>
 						Choose This Package
 					</button>
-					<div class="qr-section">
-						<div class="qr-label">Payment QR Code</div>
-						<div id={`qrcode-${pkg.id}`}></div>
-					</div>
 				</div>
 			</div>
 		))
@@ -359,10 +355,18 @@ function formatPrice(price: number): string {
 		}
 	}
 
-	const qrData: Record<number, string> = {
-		1: 'https://vietqr.io/billing/1323000',
-		2: 'https://vietqr.io/billing/2133000',
-	};
+	// Lấy QR code từ API endpoint
+	async function fetchQRCodeImage(packageId: number) {
+		try {
+			const response = await fetch(`/api/qr/${packageId}`);
+			if (!response.ok) throw new Error('Failed to fetch QR code');
+			const data = await response.json();
+			return data.qrImage; // Trả về base64 hoặc URL ảnh
+		} catch (error) {
+			console.error('Error fetching QR:', error);
+			return null;
+		}
+	}
 
 	function initQRCodes() {
 		if (!window.QRCode) {
@@ -370,19 +374,8 @@ function formatPrice(price: number): string {
 			return;
 		}
 
-		[1, 2].forEach((id) => {
-			const element = document.getElementById(`qrcode-${id}`);
-			if (element && !element.querySelector('canvas')) {
-				new window.QRCode(element, {
-					text: qrData[id],
-					width: 150,
-					height: 150,
-					colorDark: '#667eea',
-					colorLight: '#ffffff',
-					correctLevel: window.QRCode.CorrectLevel.H,
-				});
-			}
-		});
+		// QR chỉ generate khi cần thiết (trong modal)
+		// Không generate tất cả lúc load page
 	}
 
 	function showPaymentModal(packageId: number, packageName: string, price: number) {
@@ -427,7 +420,4 @@ function formatPrice(price: number): string {
 			closePaymentModal();
 		}
 	});
-
-	document.addEventListener('astro:page-load', initQRCodes);
-	window.addEventListener('load', initQRCodes);
 </script>
