@@ -318,7 +318,7 @@ function formatPrice(price: number): string {
 				<div class="card-bottom">
 					<button
 						class="btn-payment"
-						onclick={`showPaymentModal(${pkg.id}, '${pkg.duration}', ${pkg.price})`}
+						onclick={`showPaymentModal('${pkg.title}', ${pkg.price})`}
 					>
 						Choose This Package
 					</button>
@@ -361,33 +361,34 @@ function formatPrice(price: number): string {
 	// Biến lưu cache ảnh QR ở client để không phải gọi API nhiều lần
     let cachedQrBase64 = null;
 
-    // 1. Hàm chỉ gọi 1 lần để lấy ảnh QR tĩnh
+    // Hàm gọi API
     async function fetchStaticQR() {
-        if (cachedQrBase64) return cachedQrBase64; // Nếu đã có thì dùng luôn
+        if (cachedQrBase64) return cachedQrBase64;
 
         try {
-            const response = await fetch('/api/qr');
-            if (!response.ok) throw new Error('Failed');
+            // SỬA: Dùng full URL thay vì đường dẫn tương đối
+            // Để localhost cũng gọi được lên server thật
+            const API_URL = 'https://acaslawfirm.com/api/qr'; 
+            
+            console.log("Fetching QR from:", API_URL); // Log để debug
+            const response = await fetch(API_URL);
+            
+            if (!response.ok) {
+                console.error("Worker error:", response.status, response.statusText);
+                throw new Error('Failed to fetch');
+            }
+            
             const data = await response.json();
-            cachedQrBase64 = data.qrImage; // Lưu lại
+            if (data.error) throw new Error(data.error);
+
+            cachedQrBase64 = data.qrImage;
             return data.qrImage;
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error details:', error);
             return null;
         }
     }
 
-	function initQRCodes() {
-		if (!window.QRCode) {
-			console.warn('QRCode library not loaded');
-			return;
-		}
-
-		// QR chỉ generate khi cần thiết (trong modal)
-		// Không generate tất cả lúc load page
-	}
-
-	// 2. Hàm hiển thị Modal
     async function showPaymentModal(title, price) {
         const modal = document.getElementById('paymentModal');
         const modalTitle = document.getElementById('modalTitle');
@@ -396,27 +397,35 @@ function formatPrice(price: number): string {
         const qrLoading = document.getElementById('qrLoading');
 
         if (modal) {
-            // Hiển thị modal
             modal.classList.add('active');
             
-            // Cập nhật thông tin text
+            // Cập nhật text UI
             if (modalTitle) modalTitle.textContent = `Payment for ${title}`;
-            if (modalPrice) modalPrice.textContent = `$${price}`; // Hoặc format tiền Việt
+            
+            // Format giá tiền (Ví dụ thêm $ hoặc VNĐ)
+            if (modalPrice) {
+                // Kiểm tra nếu price là số thì format, không thì giữ nguyên
+                const displayPrice = typeof price === 'number' ? `$${price}` : price;
+                modalPrice.textContent = displayPrice;
+            }
 
-            // Logic hiển thị ảnh
-            if (qrImg) {
-                // Nếu ảnh đang ẩn hoặc chưa có src
+            // Xử lý ảnh QR
+            if (qrImg && qrLoading) {
                 qrImg.style.display = 'none';
-                if (qrLoading) qrLoading.style.display = 'block';
+                qrLoading.style.display = 'block';
+                qrLoading.textContent = "Loading QR Code...";
 
                 const base64 = await fetchStaticQR();
                 
                 if (base64) {
                     qrImg.src = base64;
-                    if (qrLoading) qrLoading.style.display = 'none';
-                    qrImg.style.display = 'block';
+                    // Khi ảnh tải xong mới hiện
+                    qrImg.onload = () => {
+                        qrLoading.style.display = 'none';
+                        qrImg.style.display = 'block';
+                    };
                 } else {
-                    if (qrLoading) qrLoading.textContent = "Error loading QR";
+                    qrLoading.textContent = "Error loading QR. Please contact support.";
                 }
             }
         }
