@@ -350,7 +350,24 @@
   color: #fff;
   text-decoration: underline;
 }
+/* ========================================
+   Contact FAB Z-Index Fix
+   ======================================== */
+.contact-fab {
+	z-index: 9999 !important;
+}
 
+.contact-fab .fab-main {
+	z-index: 9999 !important;
+}
+
+.contact-fab .fab-options {
+	z-index: 9999 !important;
+}
+
+/* ========================================
+   Responsive Design - Consulting
+   ======================================== */
 /* ========================================
    Responsive Design - Consulting
    ======================================== */
